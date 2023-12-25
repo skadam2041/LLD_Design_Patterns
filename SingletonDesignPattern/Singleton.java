@@ -9,6 +9,10 @@ public class Singleton {
         System.out.println(singleton3.hashCode());
         Singleton singleton4 =  Singleton.getInstance2();
         System.out.println(singleton4.hashCode());
+        Singleton singleton5 =  Singleton.getInstance3();
+        System.out.println(singleton5.hashCode());
+        Singleton singleton6 =  Singleton.getInstance3();
+        System.out.println(singleton6.hashCode());
     }
 
 
@@ -46,6 +50,31 @@ public class Singleton {
 
     //method 2 is thred safe but method 1 is not thred safe but it is not good for memory management as it creates instance at runtime
     // also we cannot pass arguments to constructor in method 2
-    // private static Singleton instance = new Singleton(10);
+    // so we can use method 3 which is thred safe and also good for memory management
+    // we can use synchronized keyword to make it thred safe
+    // but it is not good for performance as it will create lock on method
 
+     private static Singleton instance3 = null;
+     public synchronized static Singleton getInstance3() {
+         if (instance3 == null) {
+             instance3 = new Singleton();
+         }
+         return instance3;
+     }
+
+     // we can also use double checked locking to make it thred safe and also good for performance
+    // but it can create 2 or more object by multiple threads
+    //so we can use double checked locking
+      private static Singleton instance4  = null;
+      public static Singleton getInstance4() {
+
+              if (instance3 == null) {
+                  synchronized (Singleton.class) {
+                      if (instance3 == null) {
+                          instance3 = new Singleton();
+                      }
+                  }
+              }
+          return instance3;
+     //
 }
