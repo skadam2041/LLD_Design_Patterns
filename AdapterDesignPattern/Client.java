@@ -7,5 +7,10 @@ public class Client {
         PaymentGateway payu = new PayUAdapter();
         System.out.println(payu.printClassName());
 
+        //using factory with adapter
+        PaymentGateway razorpayFactory = PaymentGatewayFactory.getPaymentGateway("razorpay");
+        System.out.println(razorpayFactory.printClassName());
+        PaymentGateway payuFactory = PaymentGatewayFactory.getPaymentGateway("payu");
+        System.out.println(payuFactory.printClassName());
     }
 }
