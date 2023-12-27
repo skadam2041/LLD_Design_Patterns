@@ -76,6 +76,6 @@ public class Singleton {
               }
           }
           return instance3;
-      }
+      } //
      //
 }
