@@ -1,10 +1,10 @@
-Creational design pattern
+**Creational design pattern**
 
 Structural design pattern
 
 Behaviroul design pattern
 
-#Singleton :
+**#Singleton** :
 
    When we want to have only 1 object of specific class , we can use Singleton design pattern 
    
@@ -52,7 +52,7 @@ Behaviroul design pattern
        return instance;
      }
 
-#Factory :
+**#Factory** :
 
    When we want to create a specific object of subclass of specific parent class based on some condition or requirement , we can use Factory design pattern
    
@@ -121,7 +121,7 @@ Behaviroul design pattern
             CarEngine carEngine = car.getComponentFacyory().createEngine();
          }
 
-#Builder : 
+**#Builder** : 
 
    When we need to create complex immutable objects of with lots of attributes and need to validate some attributes before classs creation 
    then we can use Builder design pattern to build object of specific class with required arguments
@@ -205,7 +205,7 @@ Behaviroul design pattern
       }
 
 
-#Prototype and Registry:
+**#Prototype and Registry** :
 
    When a object is required to create multiple times with only mimimum changes , we can save the object in registry/hashMap and clone it whenever required and do minimum settings and use it
    here we can use prototype(clone) and registry(map) design pattern
@@ -267,6 +267,68 @@ Behaviroul design pattern
               return new IntellegentStudent(this);
           }
       }
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**Structural design pattern**
+
+**#Adapter**:
+   When our code base is using  differnt third party services then we can use Adapter design pattern using dependency inversion principle and then structure our code base 
+
+   We need to create adapter for each of 3rd party dependency and implement same method in it by making contact with parent Innterface and then adapter will internally call 3rd party functions
+
+   e.g 
+
+      Interface Adapter{
+         makePayment();
+      }
+
+      class phonepayAdapter implements Adapter{
+         makePayment(){
+            payViaPhonePay(){
+               //Third party functionss
+            }
+         }
+      }
+
+      class gpayAdapter implements Adapter{
+         makePayment(){
+            payViaGPay(){
+               //Third party functionss
+            }
+         }
+      }
+
+      Client{
+         Adapter payClient = new gpayAdapter();
+         payclinet.makePaymant();
+         //if inn future we need to nake chaneges only change the object with phonepay
+      }
+
+
+**#Facade** :
+   When our clinet code stucture is becoming to complex beacause of lots of dependencies,  then we can move this logic into another class and then just call methods from client class.
+   this is Facade design patterb
+   e.g :
+   
+      public class PaymentGatewayFacade {
+         private  GeneratePaymentLink generatePaymentLink = new GeneratePaymentLink();
+          private StorePayment storePayment = new StorePayment();
+
+          public String makePayment(String productName) {
+              String str = generatePaymentLink.generatePaymentLink(productName);
+              str += "\n" + storePayment.storePayment(productName);
+              return str;
+          }
+      }  
+
+   In above method we moved the logic of make payment which is dependent on 2 dependecies moved to facade so now client class can only call makepayment methos 
+
+   
+
+      
+   
 
       
 
