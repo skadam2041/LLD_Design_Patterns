@@ -68,13 +68,14 @@ public class Singleton {
       private static Singleton instance4  = null;
       public static Singleton getInstance4() {
 
-              if (instance3 == null) {
-                  synchronized (Singleton.class) {
-                      if (instance3 == null) {
-                          instance3 = new Singleton();
-                      }
+          if (instance3 == null) {
+              synchronized (Singleton.class) {
+                  if (instance3 == null) {
+                      instance3 = new Singleton();
                   }
               }
+          }
           return instance3;
+      }
      //
 }
