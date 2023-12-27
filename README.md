@@ -58,7 +58,7 @@ Behaviroul design pattern
    
    ##Practical factory :
    
-      We can create a Factory Class and write our static getSpecificobject(condition) method in it and from client we can call this static method to get our object 
+   We can create a Factory Class and write our static getSpecificobject(condition) method in it and from client we can call this static method to get our object 
       
       e.g
       
@@ -71,8 +71,8 @@ Behaviroul design pattern
 
    ##Factory method : 
    
-      Instead of creating seperate Factory class we can add create method in each subclass tot create object of corrosponding subclass
-      here Tata class will create TataEngine object of CarEngine Type
+   Instead of creating seperate Factory class we can add create method in each subclass tot create object of corrosponding subclass
+   here Tata class will create TataEngine object of CarEngine Type
       
       e.g
       
@@ -85,11 +85,11 @@ Behaviroul design pattern
 
    ##Abstract factory :
    
-      When we have to create multiple objects corrosponding to that class like factoty method then we can move all those methods to seperate interface/abstract class  
-      and we can create subclass of components of parent class
+   When we have to create multiple objects corrosponding to that class like factoty method then we can move all those methods to seperate interface/abstract class  
+   and we can create subclass of components of parent class
       
-      If Tata has object creation logic of createEngine, createTyre , createWindow we can create Seperate interface for Creating those components like Components factory 
-      (Car and Components will have there own inheritance relation)
+   If Tata has object creation logic of createEngine, createTyre , createWindow we can create Seperate interface for Creating those components like Components factory 
+   (Car and Components will have there own inheritance relation)
       
       e.g
       
