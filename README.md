@@ -1,9 +1,5 @@
 **Creational design pattern**
 
-Structural design pattern
-
-Behaviroul design pattern
-
 **#Singleton** :
 
    When we want to have only 1 object of specific class , we can use Singleton design pattern 
@@ -60,8 +56,8 @@ Behaviroul design pattern
    
    We can create a Factory Class and write our static getSpecificobject(condition) method in it and from client we can call this static method to get our object 
       
-      e.g
-      
+   e.g :
+   
          class carFactory{
             private static Car getObjectOfCar(String input){
                if(input == "tata") return new Tata()
@@ -74,7 +70,7 @@ Behaviroul design pattern
    Instead of creating seperate Factory class we can add create method in each subclass tot create object of corrosponding subclass
    here Tata class will create TataEngine object of CarEngine Type
       
-      e.g
+   e.g
       
          class Tata extends Car{
             //Attributes , gttter and setter of class
@@ -91,7 +87,7 @@ Behaviroul design pattern
    If Tata has object creation logic of createEngine, createTyre , createWindow we can create Seperate interface for Creating those components like Components factory 
    (Car and Components will have there own inheritance relation)
       
-      e.g
+   e.g
       
          class Tata extends Car{
             //Attributes , gttter and setter of class
