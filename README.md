@@ -274,6 +274,7 @@ Behaviroul design pattern
 **Structural design pattern**
 
 **#Adapter**:
+
    When our code base is using  differnt third party services then we can use Adapter design pattern using dependency inversion principle and then structure our code base 
 
    We need to create adapter for each of 3rd party dependency and implement same method in it by making contact with parent Innterface and then adapter will internally call 3rd party functions
@@ -308,8 +309,10 @@ Behaviroul design pattern
 
 
 **#Facade** :
+
    When our clinet code stucture is becoming to complex beacause of lots of dependencies,  then we can move this logic into another class and then just call methods from client class.
    this is Facade design patterb
+   
    e.g :
    
       public class PaymentGatewayFacade {
@@ -324,6 +327,74 @@ Behaviroul design pattern
       }  
 
    In above method we moved the logic of make payment which is dependent on 2 dependecies moved to facade so now client class can only call makepayment methos 
+
+   **#Decorator** :
+
+   When we want to create an object of something incrementally from base class we can use decorator design pattern.
+
+   In this we need a Universal Interface with required methods which is implemented by all of base and addon components and those component will receive Interface type adddon object in there constructor as shown below
+
+   e.g :
+
+      Interface Icecream {
+         int getPrice();
+         int getDesc();
+      }
+
+      Class Chocolate implements Icecream{
+         Icecream icecream ;
+         public Chocolate( Icecream icecream){
+             this.icecream  = icecream
+         }
+
+         getPrice(){
+             return icecream.getPrice() + 10;
+         }
+
+         getDesc(){
+             return icecream.getDesc() + "choco";
+         }   
+      }
+
+   With above code we can pass the Icecream object as base in chocolate(addon)
+
+   We need to also make some base on which we can add addons
+
+   e.g
+
+      public class Cone  implements  IceCream{
+         private IceCream iceCream;
+
+         public Cone(){
+
+         }
+         public Cone(IceCream iceCream){
+            this.iceCream = iceCream;
+         }
+
+         @Override
+         public int getPrice() {
+            if(iceCream == null) return  10;
+            else return iceCream.getPrice() + 10;
+         }
+
+          @Override
+          public String getDescription() {
+               if(iceCream == null) return " cone ";
+              else return iceCream.getDescription() + " cone ";
+          }
+      }
+
+   using above code we can create base object without any Icecream dependency also we can later add it as addons 
+   we can pass then base object to addon object constuctors to achieve this pattern
+   e.g : IceCream iceCream2 = new Chocolate(new Strawberry(new Cone(new Chocolate(new Cone()))));
+   
+   we can get final price and desc from final object of icecream
+   e.g : iceCream2.getPrice());
+         iceCream2.getDescription());
+   
+      
+         
 
    
 
