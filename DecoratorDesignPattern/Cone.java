@@ -12,11 +12,13 @@ public class Cone  implements  IceCream{
 
     @Override
     public int getPrice() {
-        return  10;
+        if(iceCream == null) return  10;
+        else return iceCream.getPrice() + 10;
     }
 
     @Override
     public String getDescription() {
-        return " cone ";
+        if(iceCream == null) return " cone ";
+        else return iceCream.getDescription() + " cone ";
     }
 }
