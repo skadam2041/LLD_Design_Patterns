@@ -328,7 +328,7 @@ Behaviroul design pattern
 
    In above method we moved the logic of make payment which is dependent on 2 dependecies moved to facade so now client class can only call makepayment methos 
 
-   **#Decorator** :
+**#Decorator** :
 
    When we want to create an object of something incrementally from base class we can use decorator design pattern.
 
@@ -387,11 +387,140 @@ Behaviroul design pattern
 
    using above code we can create base object without any Icecream dependency also we can later add it as addons 
    we can pass then base object to addon object constuctors to achieve this pattern
+   
    e.g : IceCream iceCream2 = new Chocolate(new Strawberry(new Cone(new Chocolate(new Cone()))));
    
    we can get final price and desc from final object of icecream
+   
    e.g : iceCream2.getPrice());
          iceCream2.getDescription());
+
+**#Flyweight** :
+
+ Some times our object has too many atttributes and some of them can be inteinsic(remains constant) and some are extrinsic(changes wrt to state) , In such cases when we have to create millions of object like    
+ bullet in games which will consume a lot of memory , we can devide those intrinsic and extrinsic attributes in two different classes and extrinsic class object will have refrence of that intrinsic object 
+ so that it will decreasse overall memory usage by that object
+
+ e.g
+
+   //intrinsic 
+   
+    public class Bullet {
+       private int speed;
+       private String name;
+       private int damage;
+       private byte[] image;
+       private  String color;
+    }
+
+   //extrinsic
+
+    public class FlyingBullet {
+       private String direction;
+       private int x;
+       private int y;
+       private Bullet bullet;
+    }
+
+   Flying bullet object has reference of bullet object
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**behavioural design patterns**
+
+**#Strategy** :
+
+   When we want to implement different behaviours of same functionality then we can devide them in seperate class implentating a common startegy inferface with the functionality/method and call the required behaviour based on some condtion /input using factory pattern
+
+   e.g : 
+
+      public interface PathCalculatorStrategy {
+       public String calculatePath();
+      }
+
+      public class BikePathCalculator implements PathCalculatorStrategy{
+       @Override
+       public String calculatePath() {
+           return "Bike path";
+       }   
+      }
+
+      public class CarPathCalculator implements PathCalculatorStrategy{
+       @Override
+       public String calculatePath() {
+        return "Car path";
+       }
+      }
+
+      public class PathCalculatorFactory {
+       public static PathCalculatorStrategy getPathCalculator(String type) {
+        if (type.equals("bike")) {
+            return new BikePathCalculator();
+         } else if (type.equals("car")) {
+            return new CarPathCalculator();
+         } else if (type.equals("walk")) {
+            return new WalkPathCalculator();
+         } else {
+            return null;
+         }
+       }
+      }
+
+   we can call requied behaviour using factory 
+
+   e.g PathCalculatorFactory.getPathCalculator("bike").calculatePath();
+
+   
+**#Observer** :
+
+ When we have decide and call lots of dependent object at runtime , we can use observer design pattern
+
+ When a order is placed , we need to notify generateInvoice ,  vendorservice , transport service and also we need have control over connsumers at runtime 
+
+ for such cases we can have Universal Interface with notify method , and all required service will implement it 
+
+ so in client class we can store all subscibed services in list<consumerInterface> and using for loop , we can call notify method on each of them. we can add functionality like subscribe and unsubscribe for consumers
+
+ e.g :
+
+    public interface Consumer {
+       String getNofification(String message);
+    }
+
+    public class PaymentService implements Consumer{
+       @Override
+       public String getNofification(String message) {
+           return "PaymentService: " + message;
+       }
+    }
+
+    nofify service:
+
+    List<Consumer> consumers= new ArrayList<>();
+
+    public void sendNotification(String message){
+        for(Consumer consumer: consumers){
+            System.out.println(consumer.getNofification(message));
+        }
+    }
+
+    public void addConsumer(Consumer consumer){
+        consumers.add(consumer);
+    }
+
+    public void removeConsumer(int index){
+        consumers.remove(index);
+    }
+
+    
+
+
+ 
+    
+
+
+ 
+ 
    
       
          
