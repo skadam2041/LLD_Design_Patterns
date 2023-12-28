@@ -8,6 +8,4 @@ public class PaymentGatewayFacade {
         str += "\n" + storePayment.storePayment(productName);
         return str;
     }
-
-
 }
