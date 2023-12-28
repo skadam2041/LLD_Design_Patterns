@@ -1,7 +1,7 @@
 package PathCalculatorStrategy;
 
 public class PathCalculatorFactory {
-    public static PathCalculator getPathCalculator(String type) {
+    public static PathCalculatorStrategy getPathCalculator(String type) {
         if (type.equals("bike")) {
             return new BikePathCalculator();
         } else if (type.equals("car")) {

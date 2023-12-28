@@ -1,5 +1,5 @@
 package PathCalculatorStrategy;
 
-public interface PathCalculator {
+public interface PathCalculatorStrategy {
     public String calculatePath();
 }
